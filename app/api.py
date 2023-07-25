@@ -2,10 +2,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware, HTTPException
 from fastapi.responses import RedirectResponse
 from simple_salesforce import Salesforce
+
 import os
 
 from app.database import MongoDB
 
+from dotenv import load_dotenv
 
 API = FastAPI(
     title="BloomTech Labs URL Redirect API",
@@ -27,6 +29,8 @@ async def api_version():
     """ Returns current API version
     @return: String Version """
     return API.version
+
+load_dotenv()
 
 # Salesforce credentials
 sf_username = os.getenv("SF_USERNAME")
